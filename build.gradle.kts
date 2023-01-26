@@ -94,7 +94,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.7.20" apply false
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.12.1"
     id("kotlinx-atomicfu") version "0.18.5" apply false
-    id("com.osacky.doctor") version "0.8.1"
+//    id("com.osacky.doctor") version "0.8.1"
 }
 
 allprojects {
@@ -134,6 +134,10 @@ allprojects {
     val skipPublish: List<String> by rootProject.extra
     if (!skipPublish.contains(project.name)) {
         configurePublication()
+    }
+
+    tasks.withType<Test> {
+        maxParallelForks = Runtime.getRuntime().availableProcessors()
     }
 }
 

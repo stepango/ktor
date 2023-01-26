@@ -19,6 +19,24 @@ pluginManagement {
 
 rootProject.name = "ktor"
 
+plugins {
+    id("com.gradle.enterprise") version("3.12.2")
+    id("com.gradle.common-custom-user-data-gradle-plugin") version("1.8.2")
+}
+
+gradleEnterprise {
+    server = "http://ec2-44-204-208-216.compute-1.amazonaws.com"
+    buildScan {
+        publishAlways()
+
+        capture {
+            isTaskInputFiles = true
+        }
+        isUploadInBackground = System.getenv("CI") == null
+    }
+
+}
+
 val native_targets_enabled = !extra.has("disable_native_targets")
 val CACHE_USER = System.getenv("GRADLE_CACHE_USER")
 
