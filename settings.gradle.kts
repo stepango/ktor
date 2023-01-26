@@ -35,6 +35,17 @@ gradleEnterprise {
         isUploadInBackground = System.getenv("CI") == null
     }
 
+    buildCache {
+        local {
+            isEnabled = true
+        }
+        remote(gradleEnterprise.buildCache) {
+            isEnabled = false
+            allowInsecureProtocol = true
+            setAllowUntrustedServer(true)
+        }
+    }
+
 }
 
 val native_targets_enabled = !extra.has("disable_native_targets")
