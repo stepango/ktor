@@ -26,6 +26,7 @@ plugins {
 
 gradleEnterprise {
     server = "http://ec2-44-204-208-216.compute-1.amazonaws.com"
+    allowUntrustedServer = true
     buildScan {
         publishAlways()
 
@@ -41,8 +42,6 @@ gradleEnterprise {
         }
         remote(gradleEnterprise.buildCache) {
             isEnabled = false
-            allowInsecureProtocol = true
-            setAllowUntrustedServer(true)
         }
     }
 
