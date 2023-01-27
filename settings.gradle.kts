@@ -33,7 +33,7 @@ gradleEnterprise {
         capture {
             isTaskInputFiles = true
         }
-        isUploadInBackground = System.getenv("CI") == null
+        isUploadInBackground = false
     }
 
     buildCache {
